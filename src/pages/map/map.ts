@@ -71,12 +71,8 @@ export class MapPage {
           });
         });
       })(marker);
-      //this.markers.push[marker];
-      //marker.addListener('click', this.calculateAndDisplayRoute(this.map, location, clocation));
     }
-
     directionsDisplay.setMap(this.map);
-
   }
 
   currentMarker(position, map) {

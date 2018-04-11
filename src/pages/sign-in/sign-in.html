@@ -1,0 +1,45 @@
+<!--
+  Generated template for the SignInPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Sign In</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <br>
+  <br>
+
+  <form (submit)="signIn(credentials)">
+    <ion-list inset style="display:inline">
+      <ion-item-group>
+        <ion-item>
+          <ion-label fixed>Email</ion-label>
+          <ion-input clearInput=true type="email" [(ngModel)]="credentials.email" name="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label fixed>Password</ion-label>
+          <ion-input clearInput=true type="password" [(ngModel)]="credentials.password" name="password"></ion-input>
+        </ion-item>
+      </ion-item-group>
+    </ion-list>
+    <button ion-button full block color="white" type="submit">
+      Sign In
+    </button>
+  </form>
+  <button ion-button full block icon-left color="facebook" (click)="fbSignIn()">
+      <ion-icon  name="logo-facebook"></ion-icon>
+      Log In With Facebook
+  </button>
+  <br>
+  <button ion-button block clear icon-left color="white" (click)="forgotPasswordPrompt()">
+    <a>Having trouble signing in?</a>
+  </button>
+</ion-content>

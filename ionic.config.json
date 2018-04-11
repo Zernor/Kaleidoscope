@@ -1,0 +1,8 @@
+{
+  "name": "Kaleidoscope",
+  "app_id": "7ca96cfc",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

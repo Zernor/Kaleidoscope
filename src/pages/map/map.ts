@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-declare var google: any;
+import { MapMarkerPage } from '../map-marker/map-marker';
+
+declare let google: any;
 
 
 /**
@@ -18,6 +20,7 @@ declare var google: any;
 })
 export class MapPage {
   map: any;
+  infoWindow: any;
 
   //markers = [];
   locations = [[47.7560, -122.3457], [47.6323, -122.3569]];
@@ -26,8 +29,8 @@ export class MapPage {
   // [47.7560, -122.3457], [47.6323, -122.3569]
 
   initMap() {
-    var directionsService = new google.maps.DirectionsService;
-    var directionsDisplay = new google.maps.DirectionsRenderer;
+    let directionsService = new google.maps.DirectionsService;
+    let directionsDisplay = new google.maps.DirectionsRenderer;
 
     // My location
     const location = new google.maps.LatLng(47.6062, -122.3321);
@@ -45,13 +48,26 @@ export class MapPage {
       mapTypeIds: ['roadmap']
     };
     this.map = new google.maps.Map(document.getElementById('map'), options);
+    //directionsDisplay.setPanel(document.getElementById('right-panel'));
 
     this.currentMarker(location, this.map);
+    /*
+    this.infoWindow = new google.maps.InfoWindow;
+    let pos = {
+      lat: 47.6062,
+      lng: -122.3321
+    };
 
-    var i = 0;
+    this.infoWindow.setPosition(pos);
+    this.infoWindow.setContent('Location found.');
+    this.infoWindow.open(this.map);
+    this.map.setCenter(pos);*/
+
+
+    let i = 0;
     for (i = 0; i < this.locations.length; i++) {
-      var clocation = new google.maps.LatLng(this.locations[i][0], this.locations[i][1]);
-      var marker = new google.maps.Marker({
+      let clocation = new google.maps.LatLng(this.locations[i][0], this.locations[i][1]);
+      let marker = new google.maps.Marker({
         position: clocation,
         animation: google.maps.Animation.DROP,
         map: this.map
@@ -64,7 +80,8 @@ export class MapPage {
             travelMode: 'DRIVING'
           }, function (response, status) {
             if (status === 'OK') {
-              directionsDisplay.setDirections(response);
+              this.openMapMarkerPage();
+              //directionsDisplay.setDirections(response);
             } else {
               window.alert('Directions request failed due to ' + status);
             }
@@ -72,7 +89,11 @@ export class MapPage {
         });
       })(marker);
     }
-    directionsDisplay.setMap(this.map);
+    //directionsDisplay.setMap(this.map);
+  }
+
+  openMapMarkerPage(){
+    this.navCtrl.push(MapMarkerPage);
   }
 
   currentMarker(position, map) {
@@ -86,8 +107,8 @@ export class MapPage {
   }
 
   calculateAndDisplayRoute(map, start, end) {
-    var directionsService = new google.maps.DirectionsService;
-    var directionsDisplay = new google.maps.DirectionsRenderer;
+    let directionsService = new google.maps.DirectionsService;
+    let directionsDisplay = new google.maps.DirectionsRenderer;
 
     const locStart = start;
     const locEnd = end;//new google.maps.LatLng(47.7560, -122.3457);
@@ -106,8 +127,10 @@ export class MapPage {
     });
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams
+  ) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MapPage');

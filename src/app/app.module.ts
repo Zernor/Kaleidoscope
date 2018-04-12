@@ -9,12 +9,15 @@ import { AuthenticationPage } from '../pages/authentication/authentication';
 import { HomePage } from '../pages/home/home';
 import { PrivacyPage } from '../pages/privacy/privacy';
 
+import { MapMarkerPage } from '../pages/map-marker/map-marker';
+
 @NgModule({
   declarations: [
     MyApp,
     AuthenticationPage,
     HomePage,
-    PrivacyPage
+    PrivacyPage,
+    MapMarkerPage
   ],
   imports: [
     BrowserModule,
@@ -25,7 +28,8 @@ import { PrivacyPage } from '../pages/privacy/privacy';
     MyApp,
     AuthenticationPage,
     HomePage,
-    PrivacyPage
+    PrivacyPage,
+    MapMarkerPage
   ],
   providers: [
     StatusBar,

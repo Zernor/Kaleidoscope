@@ -18,7 +18,8 @@ export class MapMarkerPage {
   directionsService = new google.maps.DirectionsService;
   marker;
   location = new google.maps.LatLng(47.6062, -122.3321);
-
+  tittle = "";
+  
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -28,6 +29,7 @@ export class MapMarkerPage {
     //this.directionsDisplay = navParams.get('directions');
     //this.marker = navParams.get('marker');
     //console.log(this.marker);
+    this.tittle = navParams.get('tittle');
 
     //this.calculateDirections(this.location, this.marker.position);
 

@@ -123,8 +123,8 @@ export class MapPage {
     });
     google.maps.event.addListener(marker, 'click', () => {
       //infoWindow.open(this.map, marker);
-      //let modal = this.modalCtrl.create(MapMarkerPage);
-      //modal.present();
+      let modal = this.modalCtrl.create(MapMarkerPage, { tittle: marker.title });
+      modal.present();
       console.log('Marker');
       console.log(marker);
       console.log(marker.position);

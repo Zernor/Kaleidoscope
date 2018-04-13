@@ -7,6 +7,9 @@
 <ion-header>
 
   <ion-navbar>
+    <button ion-button icon-only clear color="danger" (click)="closeModal()">
+      <ion-icon name="close"></ion-icon>
+    </button>
     <ion-title>map-marker</ion-title>
   </ion-navbar>
 
@@ -14,5 +17,16 @@
 
 
 <ion-content padding>
+
+    <ion-card>
+
+        <ion-card-content>
+          <!-- Add card content here! -->
+
+          <div id="directions"></div>
+
+        </ion-card-content>
+      
+      </ion-card>
 
 </ion-content>

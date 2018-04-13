@@ -8,7 +8,6 @@ import { MyApp } from './app.component';
 import { AuthenticationPage } from '../pages/authentication/authentication';
 import { HomePage } from '../pages/home/home';
 import { PrivacyPage } from '../pages/privacy/privacy';
-
 import { MapMarkerPage } from '../pages/map-marker/map-marker';
 
 @NgModule({

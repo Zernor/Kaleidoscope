@@ -1,17 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { MapMarkerPage } from '../map-marker/map-marker';
 
 declare let google: any;
-
-
-/**
- * Generated class for the MapPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -31,7 +22,9 @@ export class MapPage {
   initMap() {
     let directionsService = new google.maps.DirectionsService;
     let directionsDisplay = new google.maps.DirectionsRenderer;
-
+    let infowindow = new google.maps.InfoWindow({
+      //content: contentString 
+    });
     // My location
     const location = new google.maps.LatLng(47.6062, -122.3321);
 
@@ -50,23 +43,17 @@ export class MapPage {
     this.map = new google.maps.Map(document.getElementById('map'), options);
     //directionsDisplay.setPanel(document.getElementById('right-panel'));
 
-    this.currentMarker(location, this.map);
-    /*
-    this.infoWindow = new google.maps.InfoWindow;
-    let pos = {
-      lat: 47.6062,
-      lng: -122.3321
-    };
-
-    this.infoWindow.setPosition(pos);
-    this.infoWindow.setContent('Location found.');
-    this.infoWindow.open(this.map);
-    this.map.setCenter(pos);*/
+    //this.map.setMyLocationEnabled(true);
+    this.addCurrentPostion(location);
 
 
     let i = 0;
     for (i = 0; i < this.locations.length; i++) {
       let clocation = new google.maps.LatLng(this.locations[i][0], this.locations[i][1]);
+      //let clocation = {lat: this.locations[i][0], lng: this.locations[i][1]}
+      this.addMarker(clocation, i);
+
+      /*
       let marker = new google.maps.Marker({
         position: clocation,
         animation: google.maps.Animation.DROP,
@@ -74,36 +61,84 @@ export class MapPage {
       });
       (function (marker) {
         google.maps.event.addListener(marker, "click", function (e) {
-          directionsService.route({
-            origin: location,
-            destination: marker.position,
-            travelMode: 'DRIVING'
-          }, function (response, status) {
-            if (status === 'OK') {
-              this.openMapMarkerPage();
-              //directionsDisplay.setDirections(response);
-            } else {
-              window.alert('Directions request failed due to ' + status);
-            }
+
+          let alert = this.alertCtrl.create({
+            title: 'Low battery',
+            subTitle: '10% of battery remaining',
+            buttons: ['Dismiss']
           });
-        });
-      })(marker);
+          alert.present();
+*/
+      /*
+      directionsService.route({
+        origin: location,
+        destination: marker.position,
+        travelMode: 'DRIVING'
+      }, function (response, status) {
+        if (status === 'OK') {
+          directionsDisplay.setDirections(response);
+        } else {
+          window.alert('Directions request failed due to ' + status);
+        }
+      });
+      */
+      /*
+              });
+            })(marker);
+            */
     }
-    //directionsDisplay.setMap(this.map);
+
+    //google.maps.event.addListener(marker, "click", setPositionAsContent);
+    directionsDisplay.setMap(this.map);
+
+    //google.maps.event.addListener(marker, "click", this.setPositionAsContent());
+
   }
 
-  openMapMarkerPage(){
-    this.navCtrl.push(MapMarkerPage);
+
+  setPositionAsContent() {
+    //infoWindow.setContent(this.position.toString());
+    //infoWindow.open(this.map, this);
   }
 
-  currentMarker(position, map) {
-    return new google.maps.Marker({
-      position,
-      animation: google.maps.Animation.BOUNCE,
-      map
+
+  addMarker(position, num) {
+    let tmpNum = "";
+    tmpNum += num;
+    let marker = new google.maps.Marker({
+      map: this.map,
+      animation: google.maps.Animation.DROP,
+      position: position,
+      title: tmpNum
     });
 
-    //this.markers.push[marker];
+    let content = "<h4>Information!" + num + " </h4>";
+    this.addInfoWindow(marker, content);
+  }
+
+
+  addInfoWindow(marker, content) {
+    let infoWindow = new google.maps.InfoWindow({
+      content: content
+    });
+    google.maps.event.addListener(marker, 'click', () => {
+      //infoWindow.open(this.map, marker);
+      //let modal = this.modalCtrl.create(MapMarkerPage);
+      //modal.present();
+      console.log('Marker');
+      console.log(marker);
+      console.log(marker.position);
+      console.log(marker.title);
+
+    });
+  }
+
+  addCurrentPostion(position) {
+    return new google.maps.Marker({
+      position,
+      animation: google.maps.Animation.DROP,
+      map: this.map
+    });
   }
 
   calculateAndDisplayRoute(map, start, end) {
@@ -128,9 +163,10 @@ export class MapPage {
   }
 
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams
-  ) {}
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public modalCtrl: ModalController
+  ) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MapPage');

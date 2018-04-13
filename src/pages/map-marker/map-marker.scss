@@ -1,3 +1,24 @@
 page-map-marker {
-
+  #directions {
+    font-family: 'Roboto', 'sans-serif';
+    line-height: 30px;
+    padding-left: 10px;
+  }
+  #directions select,
+  #directions input {
+    font-size: 15px;
+  }
+  #directions select {
+    width: 100%;
+  }
+  #directions i {
+    font-size: 12px;
+  }
+  #directions {
+    height: 100%;
+    float: right;
+    width: 390px;
+    overflow: auto;
+  }
 }
+

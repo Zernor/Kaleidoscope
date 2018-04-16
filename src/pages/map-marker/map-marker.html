@@ -1,32 +1,96 @@
-<!--
-  Generated template for the MapMarkerPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
-    <button ion-button icon-only clear color="danger" (click)="closeModal()">
-      <ion-icon name="close"></ion-icon>
-    </button>
-    <ion-title>{{tittle}}</ion-title>
+    <ion-card>
+      <ion-slides pager>
+        <ion-slide *ngFor="let slide of slides">
+          <button ion-button icon-only clear color="light" (click)="closeModal()" style="position: absolute; top: 0px; left: 0px;">
+            <ion-icon name="close"></ion-icon>
+          </button>
+          <button ion-button icon-only clear color="light" style="position: absolute; top: 0px; right: 0px;">
+            <ion-icon name="more"></ion-icon>
+          </button>
+          <img [src]="slide.image" class="slide-image" />
+        </ion-slide>
+      </ion-slides>
+    </ion-card>
   </ion-navbar>
 
 </ion-header>
 
+<ion-content no-padding>
+  <ion-card>
+    <ion-card-header text-center>
+      Group Name
+    </ion-card-header>
+    <ion-card-content>
+      <h2>Wednesday</h2>
+      <p>10:00am – 11:30am & 1:00pm – 2:30pm</p>
+    </ion-card-content>
+  </ion-card>
 
-<ion-content padding>
+  <br>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4 align="center">
+        <ion-icon color="positive" name="checkmark-circle" style="zoom:1.5;" isActive="false"></ion-icon>
+        <br> Register
+      </ion-col>
+      <ion-col col-4 align="center">
+        <ion-icon color="positive" name="star" style="zoom:1.5;" isActive="false"></ion-icon>
+        <br> Review
+      </ion-col>
+      <ion-col col-4 align="center">
+        <ion-icon color="positive" name="bookmarks" style="zoom:1.5;" isActive="true"></ion-icon>
+        <br> Bookmark
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <br>
+  <ion-card>
+    <div #map2 id="map2"></div>
+    <ion-item>
+      <h2>Aberdeen</h2>
+      <p>Shoppes at Riverside </p>
+      <p>1017 South Boone Street</p>
+      <button ion-button clear icon-left item-end>
+        <ion-icon name="navigate" item-start></ion-icon>
+        Directions
+      </button>
+    </ion-item>
+  </ion-card>
+  <br>
+  <ion-card>
 
-    <ion-card>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-icon name="cash" item-start></ion-icon>
+          Fee
+          <span item-end> No Fee</span>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="albums" item-start></ion-icon>
+          Languages
+          <span item-end>Spanish & English</span>
+        </ion-item>
 
-        <ion-card-content>
-          <!-- Add card content here! -->
 
-          <div id="directions"></div>
+        <ion-item>
+          <ion-icon name="briefcase" item-start></ion-icon>
+          <h2>Organization</h2>
+          <p>Child Care Action Council</p>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="link" item-start></ion-icon>
+          <h2>Website</h2>
+          <p>http://www.ccacwa.org/kaleidoscope-play-learn-group</p>
+          <button ion-button clear item-end>View</button>
+        </ion-item>
 
-        </ion-card-content>
-      
-      </ion-card>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <br>
 
 </ion-content>

@@ -7,7 +7,21 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Nearby</ion-title>
+    <ion-row>
+      <ion-col left text-left>
+        <button ion-button icon-only clear>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col center text-center>
+        <img src="../../assets/imgs/logo.png" width="40px" height="40px" />
+      </ion-col>
+      <ion-col right text-right>
+        <button ion-button icon-only clear (click)="more($event)">
+          <ion-icon name="more"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
   </ion-navbar>
 
 </ion-header>
@@ -17,47 +31,33 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col col-3 align="center">
-        <ion-icon name="help-buoy" style="zoom:2.0;"></ion-icon>
+      <ion-col col-3 align="center" (click)="filterOut('Babysitting')">
+        <ion-icon color="positive" name="egg" style="zoom:1.5;" isActive="{{visibleBabysitting}}"></ion-icon>
         <br> Babysitting
       </ion-col>
       <ion-col col-3 align="center">
-        <ion-icon name="basket" style="zoom:2.0;"></ion-icon>
+        <ion-icon color="positive" name="basket" style="zoom:1.5;" isActive="false"></ion-icon>
         <br> Food
       </ion-col>
-      <ion-col col-3 align="center">
-        <ion-icon name="calendar" style="zoom:2.0;"></ion-icon>
-        <br> Meet Ups
+      <ion-col col-3 align="center" (click)="filterOut('Groups')">
+        <ion-icon color="positive" name="calendar" style="zoom:1.5;" isActive="{{visibleGroups}}"></ion-icon>
+        <br> Groups
       </ion-col>
       <ion-col col-3 align="center">
-        <ion-icon name="home" style="zoom:2.0;"></ion-icon>
+        <ion-icon color="positive" name="home" style="zoom:1.5;" isActive="false"></ion-icon>
         <br> Shelter
       </ion-col>
-
     </ion-row>
   </ion-grid>
 
-
-  <ion-card>
-    <img src="../../assets/imgs/logo.png" />
+  <ion-card *ngFor="let item of filterItems" >
+    <img src="{{item.img}}" />
     <ion-card-content>
       <ion-card-title>
-        Nine Inch Nails Live
+        {{item.title}}
       </ion-card-title>
       <p>
-        The most popular industrial group ever, and largely responsible for bringing the music to a mass audience.
-      </p>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-card>
-    <img src="../../assets/imgs/logo.png" />
-    <ion-card-content>
-      <ion-card-title>
-        Nine Inch Nails Live
-      </ion-card-title>
-      <p>
-        The most popular industrial group ever, and largely responsible for bringing the music to a mass audience.
+        {{item.content}}
       </p>
     </ion-card-content>
   </ion-card>

@@ -20,5 +20,16 @@ page-map-marker {
     width: 390px;
     overflow: auto;
   }
+  .swiper-pagination-bullet-active {
+    background: #f4f4f4;
+  }
+  .card-md {
+    margin: 0;
+    width: 100%;
+  }
+  #map2 {
+    height: 110px;
+    width: 100%
+  }
 }
 

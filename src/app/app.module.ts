@@ -9,6 +9,7 @@ import { AuthenticationPage } from '../pages/authentication/authentication';
 import { HomePage } from '../pages/home/home';
 import { PrivacyPage } from '../pages/privacy/privacy';
 import { MapMarkerPage } from '../pages/map-marker/map-marker';
+import { MorePage } from '../pages/more/more';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { MapMarkerPage } from '../pages/map-marker/map-marker';
     AuthenticationPage,
     HomePage,
     PrivacyPage,
-    MapMarkerPage
+    MapMarkerPage,
+    MorePage
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,8 @@ import { MapMarkerPage } from '../pages/map-marker/map-marker';
     AuthenticationPage,
     HomePage,
     PrivacyPage,
-    MapMarkerPage
+    MapMarkerPage,
+    MorePage
   ],
   providers: [
     StatusBar,
